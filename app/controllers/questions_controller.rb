@@ -3,7 +3,10 @@ class QuestionsController < ApplicationController
 
   # GET /questions or /questions.json
   def index
-    @questions = Question.all
+    temp = User.joins(:questions)
+               .group(:email)
+               .select("users.email, MIN(questions.created_at) created_at, count(1) total_questions")
+    @ranking = User.from( temp, "temp").select("temp.*").order("total_questions desc", "created_at asc")
     @question = Question.new
   end
 

@@ -7,15 +7,14 @@
     <tr>
       <th>Usuario</th>
       <th>Preguntas</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% User.all.each do |user| %>
+    <% @ranking.each do |ranki| %>
       <tr>
-        <td><%= user.email %></td>
-        <td><%= user.questions.count %></td>
+        <td><%= ranki.email %></td>
+        <td><%= ranki.total_questions %></td>
       </tr>
     <% end %>
   </tbody>
